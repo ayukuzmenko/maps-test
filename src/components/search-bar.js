@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class SearchBar extends Component {
   state = {
@@ -26,4 +27,9 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar;
+const mapStateProps = state => {
+  return {
+    ymaps: state.ymaps,
+  };
+};
+export default connect(mapStateProps)(SearchBar);

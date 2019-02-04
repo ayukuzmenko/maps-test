@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Map extends Component {
   state = {
@@ -31,4 +32,9 @@ class Map extends Component {
   }
 }
 
-export default Map;
+const mapStateProps = state => {
+  return {
+    ymaps: state.ymaps,
+  };
+};
+export default connect(mapStateProps)(Map);

@@ -6,8 +6,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Map ymaps={this.props.ymaps} />
-        <SearchBar ymaps={this.props.ymaps} />
+        <Map />
+        <SearchBar />
       </div>
     );
   }
