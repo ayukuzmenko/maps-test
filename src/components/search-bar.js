@@ -8,13 +8,12 @@ class SearchBar extends Component {
 
   initSearch = () => {
     const { ymaps } = this.props;
-    var suggestView1 = new ymaps.SuggestView('suggest1');
-    console.log(suggestView1);
+    new ymaps.SuggestView('suggest1');
   };
 
   render() {
     return (
-      <div>
+      <div style={{ float: 'left', width: '30%' }}>
         <p class="header">Начните вводить запрос для появления поисковой подсказки</p>
         <input type="text" id="suggest1" />
       </div>

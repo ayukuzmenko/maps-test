@@ -23,7 +23,7 @@ class Map extends Component {
 
   render() {
     const mapHeight = window.innerHeight - 50;
-    return <div id="map" style={{ width: '70%', height: mapHeight }} />;
+    return <div id="map" style={{ float: 'right', width: '70%', height: mapHeight }} />;
   }
 
   componentDidMount() {
