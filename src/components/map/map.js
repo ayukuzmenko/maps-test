@@ -6,6 +6,7 @@ class Map extends Component {
   state = {
     map: null,
   };
+
   initMap = () => {
     const { ymaps } = this.props;
     const map = new ymaps.Map(
@@ -23,7 +24,7 @@ class Map extends Component {
   };
 
   render() {
-    return <div id="map" class="containerMap " />;
+    return <div id="map" className="containerMap " />;
   }
 
   componentDidMount() {

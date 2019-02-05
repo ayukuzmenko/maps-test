@@ -14,8 +14,8 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="container">
-        <p class="header">Начните вводить адрес для появления поисковой подсказки:</p>
+      <div>
+        <p className="header">Начните вводить адрес точки для появления поисковой подсказки:</p>
         <input type="text" id="suggest" className="suggest " />
       </div>
     );
