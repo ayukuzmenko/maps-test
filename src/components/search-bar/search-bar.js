@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './style.css';
 
 class SearchBar extends Component {
   state = {
@@ -8,14 +9,14 @@ class SearchBar extends Component {
 
   initSearch = () => {
     const { ymaps } = this.props;
-    new ymaps.SuggestView('suggest1');
+    new ymaps.SuggestView('suggest');
   };
 
   render() {
     return (
-      <div style={{ float: 'left', width: '30%' }}>
-        <p class="header">Начните вводить запрос для появления поисковой подсказки</p>
-        <input type="text" id="suggest1" />
+      <div className="container">
+        <p class="header">Начните вводить адрес для появления поисковой подсказки:</p>
+        <input type="text" id="suggest" className="suggest " />
       </div>
     );
   }

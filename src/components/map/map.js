@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './style.css';
 
 class Map extends Component {
   state = {
@@ -22,8 +23,7 @@ class Map extends Component {
   };
 
   render() {
-    const mapHeight = window.innerHeight - 50;
-    return <div id="map" style={{ float: 'right', width: '70%', height: mapHeight }} />;
+    return <div id="map" class="containerMap " />;
   }
 
   componentDidMount() {
