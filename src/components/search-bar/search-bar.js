@@ -13,9 +13,11 @@ class SearchBar extends Component {
     new ymaps.SuggestView('suggest');
   };
 
-  chekPoint = event => {
+  chekPointHandler = event => {
     if (event.key === `Enter`) {
-      this.props.addPoint(event.target.value);
+      const bar = event.target;
+      this.props.addPoint(bar.value);
+      bar.value = ``;
     }
   };
 
@@ -23,7 +25,7 @@ class SearchBar extends Component {
     return (
       <div>
         <p className="header">Начните вводить адрес точки для появления поисковой подсказки:</p>
-        <input type="text" id="suggest" className="suggest" onKeyPress={this.chekPoint} />
+        <input type="text" id="suggest" className="suggest" onKeyPress={this.chekPointHandler} />
       </div>
     );
   }
@@ -39,6 +41,7 @@ const mapStateProps = state => {
     ymaps: state.ymaps,
   };
 };
+
 export default connect(
   mapStateProps,
   {

@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deletePoint } from '../../actions';
 
 class Point extends Component {
+  deletePointHandler = () => {
+    this.props.deletePoint(this.props.item.id);
+  };
+
   render() {
-    const { text } = this.props;
+    const { item } = this.props;
     return (
       <div>
-        <span>{text}</span>
-        <button>x</button>
+        <span>{item.text}</span>
+        <button onClick={this.deletePointHandler}>x</button>
       </div>
     );
   }
 }
 
-export default Point;
+export default connect(
+  null,
+  { deletePoint },
+)(Point);

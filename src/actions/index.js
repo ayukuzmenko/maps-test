@@ -1,4 +1,4 @@
-import { REORDER_POINTS, NEW_POINT } from '../constants';
+import { REORDER_POINTS, NEW_POINT, DELETE_POINT } from '../constants';
 
 export const reoderPoint = pointList => {
   return {
@@ -12,5 +12,12 @@ export const addPoint = text => {
     type: NEW_POINT,
     payload: { text },
     generateId: true,
+  };
+};
+
+export const deletePoint = id => {
+  return {
+    type: DELETE_POINT,
+    payload: { id },
   };
 };

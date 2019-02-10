@@ -1,4 +1,4 @@
-import { REORDER_POINTS, NEW_POINT } from '../constants';
+import { REORDER_POINTS, NEW_POINT, DELETE_POINT } from '../constants';
 
 export default (points = [], action) => {
   const { type, payload } = action;
@@ -13,6 +13,9 @@ export default (points = [], action) => {
         text: payload.text,
       });
       return newPoints;
+    }
+    case DELETE_POINT: {
+      return points.filter(item => item.id !== payload.id);
     }
     default: {
       return points;

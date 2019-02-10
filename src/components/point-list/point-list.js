@@ -5,7 +5,7 @@ import { reoderPoint } from '../../actions';
 import Point from '../point';
 
 class PointList extends Component {
-  onDragEnd = result => {
+  dragEndHandler = result => {
     if (!result.destination) {
       return;
     }
@@ -24,7 +24,7 @@ class PointList extends Component {
       <Draggable key={item.id} draggableId={item.id} index={index}>
         {(provided, snapshot) => (
           <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-            <Point text={item.text} />
+            <Point item={item} />
           </div>
         )}
       </Draggable>
@@ -39,7 +39,7 @@ class PointList extends Component {
     }
 
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
+      <DragDropContext onDragEnd={this.dragEndHandler}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
