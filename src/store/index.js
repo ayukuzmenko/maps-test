@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from '../reducers';
+import randomid from '../middleware/randomid';
 
 let composeEnhancers;
 if (process.env.NODE_ENV === 'development') {
@@ -12,7 +13,7 @@ if (process.env.NODE_ENV === 'development') {
   composeEnhancers = compose;
 }
 
-const enhancer = composeEnhancers(applyMiddleware(thunk));
+const enhancer = composeEnhancers(applyMiddleware(thunk, randomid));
 
 const store = createStore(reducer, enhancer);
 

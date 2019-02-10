@@ -20,11 +20,11 @@ class PointList extends Component {
   get pointBody() {
     const { points } = this.props;
 
-    return points.map((text, index) => (
-      <Draggable key={text} draggableId={text} index={index}>
+    return points.map((item, index) => (
+      <Draggable key={item.id} draggableId={item.id} index={index}>
         {(provided, snapshot) => (
           <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-            <Point text={text} />
+            <Point text={item.text} />
           </div>
         )}
       </Draggable>
@@ -32,6 +32,12 @@ class PointList extends Component {
   }
 
   render() {
+    const { points } = this.props;
+
+    if (!points.length) {
+      return null;
+    }
+
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
