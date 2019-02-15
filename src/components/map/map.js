@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
+import { pointsSelector } from '../../selectors';
 
 class Map extends Component {
   state = {
@@ -8,8 +9,7 @@ class Map extends Component {
   };
 
   initMap = () => {
-    const { ymaps } = this.props;
-    const map = new ymaps.Map(
+    const map = new window.ymaps.Map(
       'map',
       {
         center: [55.76, 37.64], // Москва
@@ -20,7 +20,7 @@ class Map extends Component {
       },
     );
 
-    this.setState({ map });
+    this.map = map;
   };
 
   render() {
@@ -28,14 +28,37 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    const { ymaps } = this.props;
-    ymaps.ready(this.initMap);
+    window.ymaps.ready(this.initMap);
+  }
+
+  componentDidUpdate() {
+    this.addPoint();
+  }
+
+  addPoint() {
+    const { points } = this.props;
+
+    this.map.geoObjects.removeAll();
+
+    points.forEach(point => {
+      const mark = new window.ymaps.Placemark(
+        point.coords,
+        {
+          iconCaption: point.adress,
+        },
+        {
+          preset: 'islands#darkBlueDotIconWithCaptio',
+          iconCaptionMaxWidth: '150',
+        },
+      );
+      this.map.geoObjects.add(mark);
+    });
   }
 }
 
 const mapStateProps = state => {
   return {
-    ymaps: state.ymaps,
+    points: pointsSelector(state),
   };
 };
 export default connect(mapStateProps)(Map);

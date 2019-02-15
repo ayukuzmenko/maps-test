@@ -3,7 +3,8 @@ import { Record, List } from 'immutable';
 
 const pointRecord = new Record({
   id: null,
-  geoObj: null,
+  adress: null,
+  coords: null,
   loading: false,
   loaded: false,
   error: null,
@@ -19,7 +20,8 @@ export default (points = List([]), action) => {
       return points.push(
         new pointRecord({
           id: action.newPointId,
-          geoObj: payload.geoObj,
+          coords: payload.coords,
+          adress: payload.adress,
           loaded: true,
         }),
       );

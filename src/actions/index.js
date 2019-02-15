@@ -19,10 +19,16 @@ export const addPoint = text => {
         const geoObj = res.geoObjects.get(0);
 
         if (geoObj) {
+          geoObj.options.set({
+            preset: 'islands#darkBlueDotIconWithCaption',
+            draggable: true,
+          });
+          geoObj.properties.set('iconCaption', geoObj.getAddressLine());
           dispatch({
             type: NEW_POINT + SUCCESS,
             payload: {
-              geoObj,
+              adress: geoObj.getAddressLine(),
+              coords: geoObj.geometry.getCoordinates(),
             },
             generateId: true,
           });
