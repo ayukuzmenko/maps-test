@@ -13,9 +13,9 @@ class PointList extends Component {
 
     const { points, reoderPoint } = this.props;
 
-    const OrderedPoints = reorder(points, result.source.index, result.destination.index);
+    const newOrderedPoints = reorder(points, result.source.index, result.destination.index);
 
-    reoderPoint(OrderedPoints);
+    reoderPoint(newOrderedPoints);
   };
 
   get pointBody() {

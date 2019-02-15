@@ -13,24 +13,22 @@ export const addPoint = text => {
       type: NEW_POINT + START,
     });
 
-    fetch(
-      `https://geocode-maps.yandex.ru/1.x/?apikey=bd96e039-e525-42b9-803e-b57cd7b8e9b1&format=json&results=1&geocode=${text}`,
-    )
+    window.ymaps
+      .geocode(text, { result: 1 })
       .then(res => {
-        if (res.status >= 400) {
-          throw new Error(res.statusText);
+        const geoObj = res.geoObjects.get(0);
+
+        if (geoObj) {
+          dispatch({
+            type: NEW_POINT + SUCCESS,
+            payload: {
+              geoObj,
+            },
+            generateId: true,
+          });
+        } else {
+          // if result not found
         }
-        return res.json();
-      })
-      .then(response => {
-        dispatch({
-          type: NEW_POINT + SUCCESS,
-          payload: {
-            text,
-            coords: response.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos,
-          },
-          generateId: true,
-        });
       })
       .catch(error => {
         dispatch({

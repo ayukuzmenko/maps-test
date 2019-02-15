@@ -11,7 +11,7 @@ class Point extends Component {
     const { item } = this.props;
     return (
       <div>
-        <span>{item.text}</span>
+        <span>{item.geoObj.getAddressLine()}</span>
         <button onClick={this.deletePointHandler}>x</button>
       </div>
     );
