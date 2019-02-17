@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
 import { pointsSelector } from '../../selectors';
+import { replacePoint } from '../../actions';
 
 class Map extends Component {
   state = {
@@ -23,6 +24,16 @@ class Map extends Component {
     this.map = map;
   };
 
+  handlerDragEnd = event => {
+    const mark = event.get('target');
+    const { replacePoint } = this.props;
+    const coords = mark.geometry.getCoordinates();
+
+    const arrIndex = mark.properties.get('arrIndex');
+
+    replacePoint(arrIndex, coords);
+  };
+
   render() {
     return <div id="map" className="containerMap " />;
   }
@@ -40,11 +51,12 @@ class Map extends Component {
   addPoint() {
     const { points } = this.props;
 
-    points.forEach(point => {
+    points.forEach((point, index) => {
       const mark = new window.ymaps.Placemark(
         point.coords,
         {
           iconCaption: point.adress,
+          arrIndex: index,
         },
         {
           draggable: true,
@@ -53,6 +65,7 @@ class Map extends Component {
         },
       );
       this.map.geoObjects.add(mark);
+      mark.events.add(`dragend`, this.handlerDragEnd);
     });
   }
 
@@ -83,4 +96,9 @@ const mapStateProps = state => {
     points: pointsSelector(state),
   };
 };
-export default connect(mapStateProps)(Map);
+export default connect(
+  mapStateProps,
+  {
+    replacePoint,
+  },
+)(Map);

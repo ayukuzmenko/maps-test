@@ -1,4 +1,4 @@
-import { REORDER_POINTS, NEW_POINT, DELETE_POINT, SUCCESS } from '../constants';
+import { REORDER_POINTS, NEW_POINT, DELETE_POINT, SUCCESS, REPLACE_POINT } from '../constants';
 import { Record, List } from 'immutable';
 
 const pointRecord = new Record({
@@ -12,6 +12,7 @@ const pointRecord = new Record({
 
 export default (points = List([]), action) => {
   const { type, payload } = action;
+
   switch (type) {
     case REORDER_POINTS: {
       return (points = List(payload.pointList));
@@ -28,6 +29,17 @@ export default (points = List([]), action) => {
     }
     case DELETE_POINT: {
       return points.filter(item => item.id !== payload.id);
+    }
+    case REPLACE_POINT + SUCCESS: {
+      return points.set(
+        payload.arrIndex,
+        new pointRecord({
+          id: points.get(payload.arrIndex).id,
+          coords: payload.coords,
+          adress: payload.adress,
+          loaded: true,
+        }),
+      );
     }
     default: {
       return points;
