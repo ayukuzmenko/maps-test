@@ -5,12 +5,8 @@ import { pointsSelector } from '../../selectors';
 import { replacePoint } from '../../actions';
 
 class Map extends Component {
-  state = {
-    map: null,
-  };
-
   initMap = () => {
-    const map = new window.ymaps.Map(
+    this._map = new window.ymaps.Map(
       'map',
       {
         center: [55.76, 37.64], // Москва
@@ -20,8 +16,6 @@ class Map extends Component {
         searchControlProvider: 'yandex#search',
       },
     );
-
-    this.map = map;
   };
 
   handlerDragEnd = event => {
@@ -43,7 +37,7 @@ class Map extends Component {
   }
 
   componentDidUpdate() {
-    this.map.geoObjects.removeAll();
+    this._map.geoObjects.removeAll();
     this.addPoint();
     this.addPolyLine();
   }
@@ -64,7 +58,7 @@ class Map extends Component {
           iconCaptionMaxWidth: '150',
         },
       );
-      this.map.geoObjects.add(mark);
+      this._map.geoObjects.add(mark);
       mark.events.add(`dragend`, this.handlerDragEnd);
     });
   }
@@ -87,7 +81,7 @@ class Map extends Component {
       },
     );
 
-    this.map.geoObjects.add(polyline);
+    this._map.geoObjects.add(polyline);
   }
 }
 
@@ -96,6 +90,7 @@ const mapStateProps = state => {
     points: pointsSelector(state),
   };
 };
+
 export default connect(
   mapStateProps,
   {

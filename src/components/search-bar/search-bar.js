@@ -9,8 +9,7 @@ class SearchBar extends Component {
   };
 
   initSearch = () => {
-    const { ymaps } = this.props;
-    const suggest = new ymaps.SuggestView('suggest');
+    const suggest = new window.ymaps.SuggestView('suggest');
     suggest.events.add(`select`, this.chekPointHandler);
   };
 
@@ -36,19 +35,12 @@ class SearchBar extends Component {
   }
 
   componentDidMount() {
-    const { ymaps } = this.props;
-    ymaps.ready(this.initSearch);
+    window.ymaps.ready(this.initSearch);
   }
 }
 
-const mapStateProps = state => {
-  return {
-    ymaps: state.ymaps,
-  };
-};
-
 export default connect(
-  mapStateProps,
+  null,
   {
     addPoint,
   },
