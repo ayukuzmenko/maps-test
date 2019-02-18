@@ -10,22 +10,28 @@ class SearchBar extends Component {
 
   initSearch = () => {
     const { ymaps } = this.props;
-    new ymaps.SuggestView('suggest');
+    const suggest = new ymaps.SuggestView('suggest');
+    suggest.events.add(`select`, this.chekPointHandler);
   };
 
   chekPointHandler = event => {
     event.preventDefault();
-    const bar = event.target.elements.address;
-    this.props.addPoint(bar.value);
-    bar.value = ``;
+    this.props.addPoint(event.get('item').value);
+    this._inputAddress.value = ``;
   };
 
   render() {
     return (
-      <form onSubmit={this.chekPointHandler}>
+      <div>
         <p className="header">Начните вводить адрес точки для появления поисковой подсказки:</p>
-        <input name="address" type="text" id="suggest" className="suggest" />
-      </form>
+        <input
+          name="address"
+          type="text"
+          id="suggest"
+          className="suggest"
+          ref={node => (this._inputAddress = node)}
+        />
+      </div>
     );
   }
 
