@@ -22,7 +22,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <p className="header">Начните вводить адрес точки для появления поисковой подсказки:</p>
+        <p className="header">Введите адрес точки:</p>
         <input
           name="address"
           type="text"
