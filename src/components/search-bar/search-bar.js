@@ -14,19 +14,18 @@ class SearchBar extends Component {
   };
 
   chekPointHandler = event => {
-    if (event.key === `Enter`) {
-      const bar = event.target;
-      this.props.addPoint(bar.value);
-      bar.value = ``;
-    }
+    event.preventDefault();
+    const bar = event.target.elements.address;
+    this.props.addPoint(bar.value);
+    bar.value = ``;
   };
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.chekPointHandler}>
         <p className="header">Начните вводить адрес точки для появления поисковой подсказки:</p>
-        <input type="text" id="suggest" className="suggest" onKeyPress={this.chekPointHandler} />
-      </div>
+        <input name="address" type="text" id="suggest" className="suggest" />
+      </form>
     );
   }
 
