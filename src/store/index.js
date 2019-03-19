@@ -2,6 +2,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from '../reducers';
 import randomid from '../middleware/randomid';
+import { init } from '@rematch/core';
+import points from '../reducers/points';
+import { points as mPoints } from '../models/points';
 
 let composeEnhancers;
 if (process.env.NODE_ENV === 'development') {
@@ -15,6 +18,18 @@ if (process.env.NODE_ENV === 'development') {
 
 const enhancer = composeEnhancers(applyMiddleware(thunk, randomid));
 
-const store = createStore(reducer, enhancer);
+//const store = createStore(reducer, enhancer);
+
+const store = init({
+  models: {
+    mPoints,
+  },
+  redux: {
+    reducers: {
+      points,
+    },
+    middlewares: [thunk, randomid],
+  },
+});
 
 export default store;

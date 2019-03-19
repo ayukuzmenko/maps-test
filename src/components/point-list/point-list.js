@@ -11,11 +11,10 @@ class PointList extends Component {
       return;
     }
 
-    const { points, reoderPoint } = this.props;
+    const { points, reoderPoints } = this.props;
 
     const newOrderedPoints = reorder(points, result.source.index, result.destination.index);
-
-    reoderPoint(newOrderedPoints);
+    reoderPoints(newOrderedPoints);
   };
 
   get pointBody() {
@@ -64,11 +63,15 @@ const reorder = (list, startIndex, endIndex) => {
 
 const mapStateToProps = state => {
   return {
-    points: pointsSelector(state),
+    points: state.mPoints,
   };
 };
 
+const mapDispatch = ({ mPoints: { reoderPoints } }) => ({
+  reoderPoints: pointList => reoderPoints(pointList),
+});
+
 export default connect(
   mapStateToProps,
-  { reoderPoint },
+  mapDispatch,
 )(PointList);
