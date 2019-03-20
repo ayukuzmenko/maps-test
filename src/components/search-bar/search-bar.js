@@ -39,8 +39,8 @@ class SearchBar extends Component {
   }
 }
 
-const mapDispatch = ({ mPoints: { searchPoint } }) => ({
-  addPoint: text => searchPoint(text),
+const mapDispatch = dispatch => ({
+  addPoint: dispatch.mPoints.searchPoint,
 });
 
 export default connect(

@@ -3,13 +3,14 @@ export const points = {
   reducers: {
     reoderPoints: (state, payload) => (state = payload),
     addNewPoint: (state, payload) => {
+      console.log(payload);
       state.push({
         id: payload.newPointId,
         coords: payload.coords,
         adress: payload.adress,
         loaded: true,
       });
-      return state.slice();
+      return state;
     },
   },
   effects: dispatch => ({
@@ -34,4 +35,25 @@ export const points = {
       // });
     },
   }),
+};
+
+const todo = {
+  state: [
+    {
+      todo: 'Learn typescript',
+      done: true,
+    },
+    {
+      todo: 'Try immer',
+      done: false,
+    },
+  ],
+  reducers: {
+    done(state) {
+      state.push({ todo: 'Tweet about it' });
+      state[1].done = true;
+      return state;
+    },
+    sdff: 3,
+  },
 };

@@ -87,7 +87,7 @@ class Map extends Component {
 
 const mapStateProps = state => {
   return {
-    points: pointsSelector(state),
+    points: state.mPoints,
   };
 };
 

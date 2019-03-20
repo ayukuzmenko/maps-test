@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import reducer from '../reducers';
 import randomid from '../middleware/randomid';
 import { init } from '@rematch/core';
+import immerPlugin from '@rematch/immer';
 import points from '../reducers/points';
 import { points as mPoints } from '../models/points';
 
@@ -20,16 +21,19 @@ const enhancer = composeEnhancers(applyMiddleware(thunk, randomid));
 
 //const store = createStore(reducer, enhancer);
 
+const immer = immerPlugin();
+
 const store = init({
   models: {
     mPoints,
   },
-  redux: {
-    reducers: {
-      points,
-    },
-    middlewares: [thunk, randomid],
-  },
+  // redux: {
+  //   reducers: {
+  //     points,
+  //   },
+  //   middlewares: [thunk],
+  // },
+  plugins: [immer],
 });
 
 export default store;
