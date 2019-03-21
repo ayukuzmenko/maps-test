@@ -19,7 +19,7 @@ class Point extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    deletePoint: dispatch.mPoints.deletePoint,
+    deletePoint: dispatch.points.deletePoint,
   };
 };
 

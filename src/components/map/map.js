@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
-import { pointsSelector } from '../../selectors';
-import { replacePoint } from '../../actions';
-import { dispatch } from 'rxjs/internal/observable/pairs';
 
 class Map extends Component {
   initMap = () => {
@@ -91,7 +88,7 @@ const mapStateProps = state => {
 };
 
 const mapDispatch = dispatch => ({
-  replacePoint: dispatch.mPoints.getNewCoords,
+  replacePoint: dispatch.points.getNewCoords,
 });
 
 export default connect(

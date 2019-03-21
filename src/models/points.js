@@ -26,6 +26,7 @@ export const points = {
       };
     },
   },
+
   effects: dispatch => ({
     async searchPoint(payload) {
       window.ymaps.geocode(payload, { result: 1 }).then(res => {
@@ -53,7 +54,7 @@ export const points = {
         const geoObj = res.geoObjects.get(0);
         if (res) {
           const adress = geoObj.getAddressLine() ? geoObj.getAddressLine() : `Address unknown`;
-          dispatch.mPoints.replacePoint({
+          dispatch.points.replacePoint({
             adress: adress,
             coords: payload.newCoords,
             arrIndex: payload.arrIndex,

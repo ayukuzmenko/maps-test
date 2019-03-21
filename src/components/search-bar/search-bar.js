@@ -39,7 +39,7 @@ class SearchBar extends Component {
 }
 
 const mapDispatch = dispatch => ({
-  addPoint: dispatch.mPoints.searchPoint,
+  addPoint: dispatch.points.searchPoint,
 });
 
 export default connect(
