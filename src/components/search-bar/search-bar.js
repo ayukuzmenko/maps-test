@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
-import { addPoint } from '../../actions';
 
 class SearchBar extends Component {
   state = {

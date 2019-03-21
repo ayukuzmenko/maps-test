@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deletePoint } from '../../actions';
 
 class Point extends Component {
   deletePointHandler = () => {
@@ -18,7 +17,13 @@ class Point extends Component {
   }
 }
 
+const mapDispatch = dispatch => {
+  return {
+    deletePoint: dispatch.mPoints.deletePoint,
+  };
+};
+
 export default connect(
   null,
-  { deletePoint },
+  mapDispatch,
 )(Point);

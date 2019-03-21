@@ -2,8 +2,8 @@ export const points = {
   state: [],
   reducers: {
     reoderPoints: (state, payload) => (state = payload),
+
     addNewPoint: (state, payload) => {
-      console.log(payload);
       state.push({
         id: payload.newPointId,
         coords: payload.coords,
@@ -11,6 +11,19 @@ export const points = {
         loaded: true,
       });
       return state;
+    },
+
+    deletePoint: (state, payload) => {
+      return state.filter(item => item.id !== payload);
+    },
+
+    replacePoint: (state, payload) => {
+      state[payload.arrIndex] = {
+        id: state[payload.arrIndex].id,
+        coords: payload.coords,
+        adress: payload.adress,
+        loaded: true,
+      };
     },
   },
   effects: dispatch => ({
@@ -34,26 +47,21 @@ export const points = {
       //   });
       // });
     },
-  }),
-};
 
-const todo = {
-  state: [
-    {
-      todo: 'Learn typescript',
-      done: true,
+    async getNewCoords(payload) {
+      window.ymaps.geocode(payload.newCoords, { result: 1 }).then(res => {
+        const geoObj = res.geoObjects.get(0);
+        if (res) {
+          const adress = geoObj.getAddressLine() ? geoObj.getAddressLine() : `Address unknown`;
+          dispatch.mPoints.replacePoint({
+            adress: adress,
+            coords: payload.newCoords,
+            arrIndex: payload.arrIndex,
+          });
+        } else {
+          // if result not found
+        }
+      });
     },
-    {
-      todo: 'Try immer',
-      done: false,
-    },
-  ],
-  reducers: {
-    done(state) {
-      state.push({ todo: 'Tweet about it' });
-      state[1].done = true;
-      return state;
-    },
-    sdff: 3,
-  },
+  }),
 };

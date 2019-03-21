@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './style.css';
 import { pointsSelector } from '../../selectors';
 import { replacePoint } from '../../actions';
+import { dispatch } from 'rxjs/internal/observable/pairs';
 
 class Map extends Component {
   initMap = () => {
@@ -21,11 +22,9 @@ class Map extends Component {
   handlerDragEnd = event => {
     const mark = event.get('target');
     const { replacePoint } = this.props;
-    const coords = mark.geometry.getCoordinates();
-
+    const newCoords = mark.geometry.getCoordinates();
     const arrIndex = mark.properties.get('arrIndex');
-
-    replacePoint(arrIndex, coords);
+    replacePoint({ arrIndex, newCoords });
   };
 
   render() {
@@ -91,9 +90,11 @@ const mapStateProps = state => {
   };
 };
 
+const mapDispatch = dispatch => ({
+  replacePoint: dispatch.mPoints.getNewCoords,
+});
+
 export default connect(
   mapStateProps,
-  {
-    replacePoint,
-  },
+  mapDispatch,
 )(Map);
