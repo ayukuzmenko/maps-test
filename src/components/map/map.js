@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
-import { pointsSelector } from '../../selectors';
-import { replacePoint } from '../../actions';
 
 class Map extends Component {
   initMap = () => {
@@ -21,11 +19,9 @@ class Map extends Component {
   handlerDragEnd = event => {
     const mark = event.get('target');
     const { replacePoint } = this.props;
-    const coords = mark.geometry.getCoordinates();
-
+    const newCoords = mark.geometry.getCoordinates();
     const arrIndex = mark.properties.get('arrIndex');
-
-    replacePoint(arrIndex, coords);
+    replacePoint({ arrIndex, newCoords });
   };
 
   render() {
@@ -87,13 +83,15 @@ class Map extends Component {
 
 const mapStateProps = state => {
   return {
-    points: pointsSelector(state),
+    points: state.mPoints,
   };
 };
 
+const mapDispatch = dispatch => ({
+  replacePoint: dispatch.points.getNewCoords,
+});
+
 export default connect(
   mapStateProps,
-  {
-    replacePoint,
-  },
+  mapDispatch,
 )(Map);

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
-import { addPoint } from '../../actions';
 
 class SearchBar extends Component {
   state = {
@@ -39,9 +38,11 @@ class SearchBar extends Component {
   }
 }
 
+const mapDispatch = dispatch => ({
+  addPoint: dispatch.points.searchPoint,
+});
+
 export default connect(
   null,
-  {
-    addPoint,
-  },
+  mapDispatch,
 )(SearchBar);

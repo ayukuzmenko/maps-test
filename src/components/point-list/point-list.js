@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { reoderPoint } from '../../actions';
-import { pointsSelector } from '../../selectors';
 import Point from '../point';
 
 class PointList extends Component {
@@ -11,11 +9,10 @@ class PointList extends Component {
       return;
     }
 
-    const { points, reoderPoint } = this.props;
+    const { points, reoderPoints } = this.props;
 
     const newOrderedPoints = reorder(points, result.source.index, result.destination.index);
-
-    reoderPoint(newOrderedPoints);
+    reoderPoints(newOrderedPoints);
   };
 
   get pointBody() {
@@ -62,13 +59,13 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-const mapStateToProps = state => {
-  return {
-    points: pointsSelector(state),
-  };
-};
+const mapStateToProps = state => ({
+  points: state.points,
+});
+
+const mapDispatch = ({ points: { reoderPoints } }) => ({ reoderPoints });
 
 export default connect(
   mapStateToProps,
-  { reoderPoint },
+  mapDispatch,
 )(PointList);

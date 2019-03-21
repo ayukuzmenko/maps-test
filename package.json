@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@rematch/core": "^1.1.0",
+    "@rematch/immer": "^1.1.0",
     "immutable": "^4.0.0-rc.12",
     "react": "^16.7.0",
     "react-beautiful-dnd": "^10.0.4",
