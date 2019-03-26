@@ -8,7 +8,6 @@ export const points = {
         id: payload.newPointId,
         coords: payload.coords,
         adress: payload.adress,
-        loaded: true,
       });
       return state;
     },
@@ -22,7 +21,6 @@ export const points = {
         id: state[payload.arrIndex].id,
         coords: payload.coords,
         adress: payload.adress,
-        loaded: true,
       };
     },
   },

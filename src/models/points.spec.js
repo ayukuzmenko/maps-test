@@ -1,15 +1,65 @@
 import { init } from '@rematch/core';
 import { points } from './points';
 
+const store = init({
+  models: { points },
+});
+
 describe('Points model', () => {
-  beforeEach(() => {
-    jest.resetModules();
+  it('reducer: addNewPoint should add new point to store', () => {
+    // const store = init({
+    //   models: { points },
+    // });
+
+    const mockPayload = {
+      newPointId: 1,
+      coords: [1, 2],
+      adress: 'adress',
+    };
+
+    store.dispatch.points.addNewPoint(mockPayload);
+
+    const pointsData = store.getState().points;
+    expect(pointsData).toEqual([
+      {
+        id: 1,
+        coords: [1, 2],
+        adress: 'adress',
+      },
+    ]);
   });
 
-  it('reducer: reoderPoints should do to reorder points', () => {
-    const store = init({
-      models: { points },
-    });
+  it('reducer: replacePoint should replace point', () => {
+    const mockPayload = {
+      newPointId: 1,
+      coords: [1, 2],
+      adress: 'adress',
+    };
+
+    store.dispatch.points.addNewPoint(mockPayload);
+
+    const mockPayload2 = {
+      arrIndex: 0,
+      coords: [2, 2],
+      adress: 'adress2',
+    };
+    store.dispatch.points.replacePoint(mockPayload2);
+
+    const pointsData = store.getState().points;
+
+    expect(pointsData).toEqual([
+      {
+        id: 1,
+        coords: [2, 2],
+        adress: 'adress2',
+      },
+    ]);
+  });
+
+  it('reducer: reoderPoints should reorder points', () => {
+    // const store = init({
+    //   models: { points },
+    // });
 
     store.dispatch.points.reoderPoints([1, 2]);
 
@@ -17,17 +67,21 @@ describe('Points model', () => {
     expect(pointsData).toEqual([1, 2]);
   });
 
-  it('reducer: searchPoint should do to add new point list to store', async () => {
-    const store = init({
-      models: { points },
-    });
+  it('reducer: deletePoint should delete point from store', () => {
+    // const store = init({
+    //   models: { points },
+    // });
 
-    const payload = `Moscow`;
+    const mockPayload = {
+      newPointId: 1,
+      coords: [1, 2],
+      adress: 'adress',
+    };
 
-    await store.dispatch.points.searchPoint(payload);
+    store.dispatch.points.addNewPoint(mockPayload);
+    store.dispatch.points.deletePoint(1);
 
     const pointsData = store.getState().points;
-    console.log(points);
-    expect(pointsData).toEqual();
+    expect(pointsData).toEqual([]);
   });
 });
