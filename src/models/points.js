@@ -1,4 +1,4 @@
-export const points = {
+export default {
   state: [],
   reducers: {
     reoderPoints: (state, payload) => (state = payload),
