@@ -1,11 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Point from './point';
+import { Point } from './point';
 
 describe('Point', () => {
   it('Add new point', () => {
-    const point = shallow(<Point item={{ adress: 'Moscow' }} />);
-    console.log(point);
-    expect(point.text()).toEqual('Moscow');
+    const item = { adress: 'Moscow' };
+    const pointContainer = shallow(<Point item={item} />);
+    expect(pointContainer).toMatchSnapshot();
+    expect(
+      pointContainer
+        .find('span')
+        .first()
+        .text(),
+    ).toEqual('Moscow');
   });
 });

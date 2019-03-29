@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class Point extends Component {
+export class Point extends Component {
   deletePointHandler = () => {
     this.props.deletePoint(this.props.item.id);
   };
@@ -10,7 +10,7 @@ class Point extends Component {
     const { item } = this.props;
     return (
       <div>
-        <span>{item.adress}</span>
+        <span className="test">{item.adress}</span>
         <button onClick={this.deletePointHandler}>x</button>
       </div>
     );
