@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
 
-class SearchBar extends Component {
+export class SearchBar extends Component {
   state = {
     map: null,
   };

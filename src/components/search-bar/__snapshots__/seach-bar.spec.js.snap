@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Serch bar component test Should match to snapshot 1`] = `
+<div>
+  <p
+    className="header"
+  >
+    Введите адрес точки:
+  </p>
+  <input
+    className="suggest"
+    id="suggest"
+    name="address"
+    type="text"
+  />
+</div>
+`;
