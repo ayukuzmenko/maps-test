@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Serch bar component test Should match to snapshot 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "model": [Function],
+      "name": "0",
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <PointList
+    points={
+      Array [
+        Object {
+          "adress": "Россия, Москва",
+          "coords": Array [
+            55.753215,
+            37.622504,
+          ],
+          "id": "1554114179293.4595",
+        },
+      ]
+    }
+  >
+    <DragDropContext
+      onDragEnd={[Function]}
+    >
+      <Connect(Droppable)
+        direction="vertical"
+        droppableId="droppable"
+        ignoreContainerClipping={false}
+        isCombineEnabled={false}
+        isDropDisabled={false}
+        type="DEFAULT"
+      >
+        <Droppable
+          direction="vertical"
+          draggingFromThisWith={null}
+          draggingOverWith={null}
+          droppableId="droppable"
+          ignoreContainerClipping={false}
+          isCombineEnabled={false}
+          isDraggingOver={false}
+          isDropDisabled={false}
+          placeholder={null}
+          shouldAnimatePlaceholder={true}
+          type="DEFAULT"
+          updateViewportMaxScroll={[Function]}
+        >
+          <DroppableDimensionPublisher
+            direction="vertical"
+            droppableId="droppable"
+            getDroppableRef={[Function]}
+            getPlaceholderRef={[Function]}
+            ignoreContainerClipping={false}
+            isCombineEnabled={false}
+            isDropDisabled={false}
+            type="DEFAULT"
+          >
+            <div
+              data-react-beautiful-dnd-droppable="0"
+            >
+              <Connect(Draggable)
+                disableInteractiveElementBlocking={false}
+                draggableId="1554114179293.4595"
+                index={0}
+                isDragDisabled={false}
+                key="1554114179293.4595"
+                shouldRespectForceTouch={true}
+              >
+                <Draggable
+                  disableInteractiveElementBlocking={false}
+                  draggableId="1554114179293.4595"
+                  dragging={null}
+                  drop={[Function]}
+                  dropAnimationFinished={[Function]}
+                  index={0}
+                  isDragDisabled={false}
+                  lift={[Function]}
+                  move={[Function]}
+                  moveByWindowScroll={[Function]}
+                  moveDown={[Function]}
+                  moveLeft={[Function]}
+                  moveRight={[Function]}
+                  moveUp={[Function]}
+                  secondary={
+                    Object {
+                      "combineTargetFor": null,
+                      "offset": Object {
+                        "x": 0,
+                        "y": 0,
+                      },
+                      "shouldAnimateDisplacement": true,
+                    }
+                  }
+                  shouldRespectForceTouch={true}
+                >
+                  <DraggableDimensionPublisher
+                    draggableId="1554114179293.4595"
+                    droppableId="droppable"
+                    getDraggableRef={[Function]}
+                    index={0}
+                    key="1554114179293.4595"
+                    type="DEFAULT"
+                  >
+                    <DragHandle
+                      callbacks={
+                        Object {
+                          "onCancel": [Function],
+                          "onDrop": [Function],
+                          "onLift": [Function],
+                          "onMove": [Function],
+                          "onMoveDown": [Function],
+                          "onMoveLeft": [Function],
+                          "onMoveRight": [Function],
+                          "onMoveUp": [Function],
+                          "onWindowScroll": [Function],
+                        }
+                      }
+                      canDragInteractiveElements={false}
+                      draggableId="1554114179293.4595"
+                      getDraggableRef={[Function]}
+                      getShouldRespectForceTouch={[Function]}
+                      isDragging={false}
+                      isDropAnimating={false}
+                      isEnabled={true}
+                    >
+                      <div
+                        aria-roledescription="Draggable item. Press space bar to lift"
+                        data-react-beautiful-dnd-drag-handle="0"
+                        data-react-beautiful-dnd-draggable="0"
+                        draggable={false}
+                        onBlur={[Function]}
+                        onDragStart={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        onTouchStart={[Function]}
+                        onTransitionEnd={null}
+                        style={
+                          Object {
+                            "transform": null,
+                            "transition": null,
+                          }
+                        }
+                        tabIndex={0}
+                      >
+                        <Connect(Point)
+                          item={
+                            Object {
+                              "adress": "Россия, Москва",
+                              "coords": Array [
+                                55.753215,
+                                37.622504,
+                              ],
+                              "id": "1554114179293.4595",
+                            }
+                          }
+                        >
+                          <Point
+                            deletePoint={[Function]}
+                            item={
+                              Object {
+                                "adress": "Россия, Москва",
+                                "coords": Array [
+                                  55.753215,
+                                  37.622504,
+                                ],
+                                "id": "1554114179293.4595",
+                              }
+                            }
+                          >
+                            <div>
+                              <span
+                                className="test"
+                              >
+                                Россия, Москва
+                              </span>
+                              <button
+                                onClick={[Function]}
+                              >
+                                x
+                              </button>
+                            </div>
+                          </Point>
+                        </Connect(Point)>
+                      </div>
+                    </DragHandle>
+                  </DraggableDimensionPublisher>
+                </Draggable>
+              </Connect(Draggable)>
+              <AnimateInOut
+                on={null}
+                shouldAnimate={true}
+              />
+            </div>
+          </DroppableDimensionPublisher>
+        </Droppable>
+      </Connect(Droppable)>
+    </DragDropContext>
+  </PointList>
+</Provider>
+`;

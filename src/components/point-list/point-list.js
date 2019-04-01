@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Point from '../point';
 
-class PointList extends Component {
+export class PointList extends Component {
   dragEndHandler = result => {
     if (!result.destination) {
       return;
