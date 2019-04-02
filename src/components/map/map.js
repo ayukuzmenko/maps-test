@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
 
-class Map extends Component {
+export class Map extends Component {
   initMap = () => {
     this._map = new window.ymaps.Map(
       'map',
@@ -25,7 +25,7 @@ class Map extends Component {
   };
 
   render() {
-    return <div id="map" className="containerMap " />;
+    return <div id="map" className="containerMap" />;
   }
 
   componentDidMount() {
@@ -61,6 +61,8 @@ class Map extends Component {
 
   addPolyLine() {
     const { points } = this.props;
+
+    if (points.length <= 1) return;
 
     const linePoints = points.map(point => point.coords);
 
