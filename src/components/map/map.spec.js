@@ -1,10 +1,7 @@
 import React from 'react';
-import { init } from '@rematch/core';
-import { Provider } from 'react-redux';
-import points from '../../models/points';
-import { mount } from 'enzyme';
-import { mountToJson } from 'enzyme-to-json';
+import { shallow } from 'enzyme';
 import { Map } from './map';
+import { shallowToJson } from 'enzyme-to-json';
 
 const mockReady = jest.fn();
 
@@ -12,10 +9,7 @@ window.ymaps = {
   ready: mockReady,
 };
 
-const store = init({
-  models: { points },
-});
-const mapContainer = mount(<Map />);
+const mapContainer = shallow(<Map />);
 
 describe('Map component test', () => {
   it('Should render map', () => {
@@ -44,5 +38,9 @@ describe('Map component test', () => {
     mapContainer.setProps(newPoint);
     expect(addPoint).toHaveBeenCalledTimes(1);
     expect(addPolyLine).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should match to snapshot', () => {
+    expect(shallowToJson(mapContainer)).toMatchSnapshot();
   });
 });
