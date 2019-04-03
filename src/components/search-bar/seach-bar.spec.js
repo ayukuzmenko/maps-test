@@ -4,12 +4,7 @@ import { shallowToJson } from 'enzyme-to-json';
 import { SearchBar } from './search-bar';
 
 window.ymaps = {
-  SuggestView: () => ({
-    events: {
-      add: () => {},
-    },
-  }),
-  ready: () => {},
+  ready: jest.fn(),
 };
 
 describe('Serch bar component test', () => {
