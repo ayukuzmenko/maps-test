@@ -57,6 +57,11 @@ export class Map extends Component {
       this._map.geoObjects.add(mark);
       mark.events.add(`dragend`, this.handlerDragEnd);
     });
+
+    this._map.setBounds(this._map.geoObjects.getBounds(), {
+      checkZoomRange: true,
+      zoomMargin: 5,
+    });
   }
 
   addPolyLine() {
