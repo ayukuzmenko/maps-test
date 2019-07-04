@@ -1,27 +1,50 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Point from '../Point';
 
-export class PointList extends Component {
-  dragEndHandler = result => {
-    if (!result.destination) {
-      return;
-    }
+const getItemStyle = (isDragging, draggableStyle) => ({
+  userSelect: "none",
+  padding: "5px",
+  marginBottom: "5px",
+  marginTop: "5px",
+  background: isDragging ? "lightgreen" : "grey",
+  ...draggableStyle
+});
 
-    const { points, reoderPoints } = this.props;
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? "lightblue" : "lightgrey",
+  padding: "5px",
+});
 
-    const newOrderedPoints = reorder(points, result.source.index, result.destination.index);
-    reoderPoints(newOrderedPoints);
-  };
+const dragEndHandler = result => {
+  if (!result.destination) {
+    return;
+  }
 
-  get pointBody() {
-    const { points } = this.props;
+  const { points, reoderPoints } = this.props;
 
+  const newOrderedPoints = reorder(points, result.source.index, result.destination.index);
+  reoderPoints(newOrderedPoints);
+};
+
+const PointList = props => {
+  const { points } = props;
+
+  if (!points.length) {
+    return null;
+  }
+
+  const getPoints = () => {
     return points.map((item, index) => (
       <Draggable key={item.id} draggableId={item.id} index={index}>
         {(provided, snapshot) => (
-          <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+          <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} 
+          style={getItemStyle(
+            snapshot.isDragging,
+            provided.draggableProps.style
+          )}
+          >
             <Point item={item} />
           </div>
         )}
@@ -29,26 +52,18 @@ export class PointList extends Component {
     ));
   }
 
-  render() {
-    const { points } = this.props;
-
-    if (!points.length) {
-      return null;
-    }
-
     return (
-      <DragDropContext onDragEnd={this.dragEndHandler}>
+      <DragDropContext onDragEnd={dragEndHandler} >
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              {this.pointBody}
+            <div ref={provided.innerRef} {...provided.droppableProps} style={getListStyle(snapshot.isDraggingOver)}>
+              {getPoints()}
               {provided.placeholder}
             </div>
           )}
         </Droppable>
       </DragDropContext>
-    );
-  }
+    )
 }
 
 const reorder = (list, startIndex, endIndex) => {

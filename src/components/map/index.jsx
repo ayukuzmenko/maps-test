@@ -1,8 +1,26 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
 
-export class Map extends Component {
+export class Map extends PureComponent {
+  componentDidMount() {
+    window.ymaps.ready(this.initMap);
+  }
+
+  componentDidUpdate() {
+    this._map.geoObjects.removeAll();
+    this.addPoint();
+    this.addPolyLine();
+  }
+
+  handlerDragEnd = event => {
+    const mark = event.get('target');
+    const { replacePoint } = this.props;
+    const newCoords = mark.geometry.getCoordinates();
+    const arrIndex = mark.properties.get('arrIndex');
+    replacePoint({ arrIndex, newCoords });
+  };
+
   initMap = () => {
     this._map = new window.ymaps.Map(
       'map',
@@ -16,26 +34,8 @@ export class Map extends Component {
     );
   };
 
-  handlerDragEnd = event => {
-    const mark = event.get('target');
-    const { replacePoint } = this.props;
-    const newCoords = mark.geometry.getCoordinates();
-    const arrIndex = mark.properties.get('arrIndex');
-    replacePoint({ arrIndex, newCoords });
-  };
-
   render() {
     return <div id="map" className="containerMap" />;
-  }
-
-  componentDidMount() {
-    window.ymaps.ready(this.initMap);
-  }
-
-  componentDidUpdate() {
-    this._map.geoObjects.removeAll();
-    this.addPoint();
-    this.addPolyLine();
   }
 
   addPoint() {

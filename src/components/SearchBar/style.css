@@ -1,9 +1,11 @@
-.suggest {
-  width: 90%;
-  margin: 2px;
+#suggest {
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
 }
 
-.container {
-  float: left;
-  width: 30%;
+.suggest_label {
+  margin-bottom: 3px;
+  display: block;
 }

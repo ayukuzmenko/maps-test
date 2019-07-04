@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import './style.css';
 
-export class Point extends Component {
-  deletePointHandler = () => {
-    this.props.deletePoint(this.props.item.id);
+const Point = props => {
+  const deletePointHandler = () => {
+    props.deletePoint(props.item.id);
   };
 
-  render() {
-    const { item } = this.props;
+    const { item } = props;
     return (
-      <div>
-        <span className="test">{item.adress}</span>
-        <button onClick={this.deletePointHandler}>x</button>
-      </div>
+      <React.Fragment>
+        <span className="address">{item.adress}</span> 
+        <button onClick={deletePointHandler}>x</button>
+      </React.Fragment>
     );
-  }
+
 }
 
 const mapDispatch = dispatch => {
