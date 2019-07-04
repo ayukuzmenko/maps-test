@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [create React App](https://github.com/facebook/create-react-app).
 
-Live [demo](https://ayukuzmenko.github.io/maps-points-react/).
+Live [demo](https://ayukuzmenko.github.io/points-maps-react).
 
 In the project directory, you can run:
 
