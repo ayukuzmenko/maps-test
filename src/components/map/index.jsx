@@ -40,51 +40,55 @@ export class Map extends Component {
 
   addPoint() {
     const { points } = this.props;
-
-    points.forEach((point, index) => {
-      const mark = new window.ymaps.Placemark(
-        point.coords,
-        {
-          iconCaption: point.adress,
-          arrIndex: index,
-        },
-        {
-          draggable: true,
-          preset: 'islands#darkBlueDotIconWithCaptio',
-          iconCaptionMaxWidth: '150',
-        },
-      );
-      this._map.geoObjects.add(mark);
-      mark.events.add(`dragend`, this.handlerDragEnd);
-    });
-
-    this._map.setBounds(this._map.geoObjects.getBounds(), {
-      checkZoomRange: true,
-      zoomMargin: 5,
-    });
+    
+    if (points.length > 0) {
+      points.forEach((point, index) => {
+        const mark = new window.ymaps.Placemark(
+          point.coords,
+          {
+            iconCaption: point.adress,
+            arrIndex: index,
+          },
+          {
+            draggable: true,
+            preset: 'islands#darkBlueDotIconWithCaptio',
+            iconCaptionMaxWidth: '150',
+          },
+        );
+        this._map.geoObjects.add(mark);
+        mark.events.add(`dragend`, this.handlerDragEnd);
+      });
+  
+      this._map.setBounds(this._map.geoObjects.getBounds(), {
+        checkZoomRange: true,
+        zoomMargin: 5,
+      });
+    }
+  
   }
 
   addPolyLine() {
     const { points } = this.props;
 
-    if (points.length <= 1) return;
+    if (points.length > 0) {
 
-    const linePoints = points.map(point => point.coords);
+      const linePoints = points.map(point => point.coords);
 
-    const polyline = new window.ymaps.Polyline(
-      linePoints,
-      {
-        balloonContent: 'Маршрут',
-      },
-      {
-        balloonCloseButton: false,
-        strokeColor: '#000000',
-        strokeWidth: 3,
-        strokeOpacity: 0.5,
-      },
-    );
+      const polyline = new window.ymaps.Polyline(
+        linePoints,
+        {
+          balloonContent: 'Маршрут',
+        },
+        {
+          balloonCloseButton: false,
+          strokeColor: '#000000',
+          strokeWidth: 3,
+          strokeOpacity: 0.5,
+        },
+      );
 
-    this._map.geoObjects.add(polyline);
+      this._map.geoObjects.add(polyline);
+    }
   }
 }
 
