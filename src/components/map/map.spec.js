@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Map } from './map';
+import { Map } from '.';
 import { shallowToJson } from 'enzyme-to-json';
 
 const mockReady = jest.fn();

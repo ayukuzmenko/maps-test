@@ -1,0 +1,11 @@
+#suggest {
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+}
+
+.suggest_label {
+  margin-bottom: 3px;
+  display: block;
+}

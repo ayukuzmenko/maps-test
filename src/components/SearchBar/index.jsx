@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
 
-export class SearchBar extends Component {
-  state = {
-    map: null,
-  };
-
+export class SearchBar extends PureComponent {
   initSearch = () => {
     const suggest = new window.ymaps.SuggestView('suggest');
     suggest.events.add(`select`, this.chekPointHandler);
@@ -21,12 +17,11 @@ export class SearchBar extends Component {
   render() {
     return (
       <div>
-        <p className="header">Введите адрес точки:</p>
+        <label className="suggest_label">Введите адрес точки:</label>
         <input
           name="address"
           type="text"
           id="suggest"
-          className="suggest"
           ref={node => (this._inputAddress = node)}
         />
       </div>
