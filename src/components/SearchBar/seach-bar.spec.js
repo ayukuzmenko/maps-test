@@ -1,7 +1,7 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import { shallowToJson } from 'enzyme-to-json';
-import { SearchBar } from './search-bar';
+import React from './node_modules/react';
+import { shallow } from './node_modules/enzyme';
+import { shallowToJson } from './node_modules/enzyme-to-json';
+import { SearchBar } from '.';
 
 window.ymaps = {
   ready: jest.fn(),

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Map from './map';
-import SearchBar from './search-bar';
-import PointList from './point-list';
+import Map from './Map';
+import SearchBar from './SearchBar';
+import PointList from './PointList';
 
 class App extends Component {
   render() {

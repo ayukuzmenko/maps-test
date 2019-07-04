@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import Point from '../point';
+import Point from '../Point';
 
 export class PointList extends Component {
   dragEndHandler = result => {
